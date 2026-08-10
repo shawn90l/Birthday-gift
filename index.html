@@ -1,0 +1,3726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<meta name="theme-color" content="#050505">
+
+<title>For Ancia ♡</title>
+
+<!-- =====================================================
+     FONTS
+===================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet">
+
+
+<style>
+
+/* =====================================================
+   BASIC SETTINGS
+===================================================== */
+
+:root {
+
+    --black: #050505;
+    --deep-black: #000000;
+
+    --dark: #0c0c0c;
+    --card: #141414;
+
+    --white: #f5f3ee;
+    --soft-white: #e8e6e1;
+
+    --gray: #999999;
+    --dark-gray: #5e5e5e;
+
+    --border: #3b3b3b;
+
+    --serif: "Cormorant Garamond", serif;
+    --modern: "Montserrat", sans-serif;
+}
+
+
+* {
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    margin: 0;
+
+    background: var(--black);
+
+    color: var(--white);
+
+    font-family: var(--modern);
+
+    overflow-x: hidden;
+}
+
+
+button,
+input {
+
+    font-family: var(--modern);
+}
+
+
+button {
+
+    cursor: pointer;
+}
+
+
+::selection {
+
+    background: white;
+
+    color: black;
+}
+
+
+/* =====================================================
+   LOADING SCREEN
+===================================================== */
+
+#loader {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #000;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+
+#loader.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+}
+
+
+.loader-content {
+
+    text-align: center;
+}
+
+
+.loader-heart {
+
+    font-size: 50px;
+
+    animation:
+        heartbeat 1.3s infinite;
+}
+
+
+.loader-text {
+
+    margin-top: 20px;
+
+    font-size: 8px;
+
+    letter-spacing: 5px;
+
+    color: #777;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   PASSWORD SCREEN
+===================================================== */
+
+#passwordScreen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #191919,
+            #050505 65%,
+            #000
+        );
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+
+#passwordScreen.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+.password-card {
+
+    width: min(420px, 100%);
+
+    padding: 50px 28px;
+
+    text-align: center;
+
+    background:
+        rgba(18,18,18,.9);
+
+    border:
+        1px solid #3d3d3d;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.8);
+
+    backdrop-filter: blur(20px);
+}
+
+
+.password-symbol {
+
+    font-size: 34px;
+
+    margin-bottom: 15px;
+}
+
+
+.password-small {
+
+    font-size: 8px;
+
+    letter-spacing: 5px;
+
+    color: #777;
+
+    text-transform: uppercase;
+}
+
+
+.password-card h1 {
+
+    font-family: var(--serif);
+
+    font-size: 72px;
+
+    line-height: .8;
+
+    font-style: italic;
+
+    font-weight: 300;
+
+    margin: 25px 0;
+
+    color: var(--white);
+}
+
+
+.password-card p {
+
+    font-size: 10px;
+
+    line-height: 1.9;
+
+    color: var(--gray);
+
+    margin-bottom: 25px;
+}
+
+
+.password-input {
+
+    width: 100%;
+
+    padding: 16px;
+
+    background: #080808;
+
+    color: white;
+
+    border: 1px solid #444;
+
+    outline: none;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+}
+
+
+.password-input:focus {
+
+    border-color: white;
+}
+
+
+.password-input::placeholder {
+
+    color: #555;
+
+    letter-spacing: 2px;
+}
+
+
+.enter-button {
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 16px;
+
+    border: none;
+
+    background: white;
+
+    color: black;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    transition: .3s;
+}
+
+
+.enter-button:hover {
+
+    background: #ddd;
+
+    transform: translateY(-2px);
+}
+
+
+.password-error {
+
+    height: 18px;
+
+    margin-top: 10px;
+
+    font-size: 9px;
+
+    color: #aaa;
+
+    opacity: 0;
+
+    transition: .3s;
+}
+
+
+.password-error.show {
+
+    opacity: 1;
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+.particle {
+
+    position: fixed;
+
+    width: 2px;
+
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: .15;
+
+    pointer-events: none;
+
+    z-index: 2;
+
+    animation:
+        particleFloat linear infinite;
+}
+
+
+@keyframes particleFloat {
+
+    from {
+
+        transform:
+            translateY(110vh);
+
+        opacity: 0;
+    }
+
+    20% {
+
+        opacity: .2;
+    }
+
+    80% {
+
+        opacity: .1;
+    }
+
+    to {
+
+        transform:
+            translateY(-10vh);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   MOUSE / TOUCH GLOW
+===================================================== */
+
+.touch-glow {
+
+    position: fixed;
+
+    width: 180px;
+
+    height: 180px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.07),
+            transparent 70%
+        );
+
+    z-index: 1;
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 65px;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    z-index: 1000;
+
+    transition: .4s;
+}
+
+
+.navbar.scrolled {
+
+    background:
+        rgba(5,5,5,.9);
+
+    backdrop-filter:
+        blur(18px);
+
+    border-bottom:
+        1px solid #222;
+}
+
+
+.logo {
+
+    font-family: var(--serif);
+
+    font-size: 30px;
+
+    font-style: italic;
+
+    color: white;
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    gap: 25px;
+
+    list-style: none;
+}
+
+
+.nav-links a {
+
+    color: #888;
+
+    text-decoration: none;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    transition: .3s;
+}
+
+
+.nav-links a:hover {
+
+    color: white;
+}
+
+
+.music-button {
+
+    width: 36px;
+
+    height: 36px;
+
+    border-radius: 50%;
+
+    border: 1px solid #444;
+
+    background: transparent;
+
+    color: white;
+
+    transition: .3s;
+}
+
+
+.music-button:hover {
+
+    background: white;
+
+    color: black;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    min-height: 100svh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 20px 50px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #191919 0%,
+            #080808 50%,
+            #000 100%
+        );
+}
+
+
+.hero-ring {
+
+    position: absolute;
+
+    width: 420px;
+
+    height: 420px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    animation:
+        rotate 30s linear infinite;
+}
+
+
+.hero-ring.two {
+
+    width: 290px;
+
+    height: 290px;
+
+    animation-direction:
+        reverse;
+
+    border-color:
+        rgba(255,255,255,.05);
+}
+
+
+@keyframes rotate {
+
+    to {
+
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    animation:
+        heroReveal 1.5s ease;
+}
+
+
+@keyframes heroReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+.hero-small {
+
+    font-size: 8px;
+
+    letter-spacing: 6px;
+
+    color: #777;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+}
+
+
+.hero h1 {
+
+    font-family: var(--serif);
+
+    font-size:
+        clamp(75px, 24vw, 175px);
+
+    line-height: .7;
+
+    font-weight: 300;
+
+    font-style: italic;
+
+    letter-spacing: -3px;
+
+    color: var(--white);
+}
+
+
+.hero h1 span {
+
+    color: #777;
+}
+
+
+.hero-subtitle {
+
+    font-family: var(--serif);
+
+    font-size:
+        clamp(28px, 7vw, 50px);
+
+    font-weight: 300;
+
+    margin-top: 45px;
+}
+
+
+.hero-description {
+
+    max-width: 500px;
+
+    margin: 25px auto;
+
+    font-size: 11px;
+
+    line-height: 2;
+
+    color: var(--gray);
+}
+
+
+.hero-button {
+
+    display: inline-block;
+
+    padding: 15px 30px;
+
+    border-radius: 50px;
+
+    background: white;
+
+    color: black;
+
+    text-decoration: none;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    transition: .35s;
+}
+
+
+.hero-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 40px rgba(255,255,255,.1);
+}
+
+
+.scroll-text {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: #555;
+
+    font-size: 7px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   COMMON SECTION
+===================================================== */
+
+.section {
+
+    padding: 110px 20px;
+
+    position: relative;
+}
+
+
+.container {
+
+    width: min(1100px, 100%);
+
+    margin: auto;
+}
+
+
+.section-label {
+
+    font-size: 8px;
+
+    letter-spacing: 5px;
+
+    color: #666;
+
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
+
+.section-title {
+
+    font-family: var(--serif);
+
+    font-size:
+        clamp(55px, 13vw, 105px);
+
+    line-height: .85;
+
+    font-weight: 300;
+
+    color: white;
+}
+
+
+.section-title em {
+
+    font-style: italic;
+
+    color: #ddd;
+}
+
+
+.section-text {
+
+    max-width: 520px;
+
+    margin-top: 25px;
+
+    color: var(--gray);
+
+    font-size: 11px;
+
+    line-height: 2;
+}
+
+
+/* =====================================================
+   AGE 19
+===================================================== */
+
+.age-section {
+
+    min-height: 100svh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background: #000;
+}
+
+
+.age-small {
+
+    font-size: 8px;
+
+    letter-spacing: 6px;
+
+    color: #666;
+
+    text-transform: uppercase;
+}
+
+
+.age-number {
+
+    font-family: var(--serif);
+
+    font-size:
+        clamp(210px, 55vw, 430px);
+
+    line-height: .6;
+
+    font-weight: 300;
+
+    color: transparent;
+
+    -webkit-text-stroke:
+        1px white;
+}
+
+
+.age-title {
+
+    font-family: var(--serif);
+
+    font-size:
+        clamp(35px, 9vw, 65px);
+
+    font-style: italic;
+
+    font-weight: 300;
+
+    margin-top: 45px;
+}
+
+
+/* =====================================================
+   LOVE LETTER
+===================================================== */
+
+.letter-section {
+
+    background: #0d0d0d;
+}
+
+
+.letter-box {
+
+    max-width: 750px;
+
+    margin: 60px auto 0;
+
+    padding: 35px 25px;
+
+    border-left:
+        1px solid #444;
+
+    border-right:
+        1px solid #222;
+}
+
+
+.letter-box p {
+
+    color: var(--gray);
+
+    font-size: 11px;
+
+    line-height: 2;
+
+    margin-bottom: 20px;
+}
+
+
+.signature {
+
+    font-family: var(--serif);
+
+    font-size: 42px;
+
+    font-style: italic;
+
+    margin-top: 30px;
+}
+
+
+/* =====================================================
+   THEN & NOW
+===================================================== */
+
+.then-now-section {
+
+    background: #050505;
+
+    text-align: center;
+
+    padding: 120px 20px;
+}
+
+
+.then-now-subtitle {
+
+    max-width: 500px;
+
+    margin: 25px auto 0;
+
+    color: #888;
+
+    font-size: 11px;
+
+    line-height: 2;
+}
+
+
+.then-now {
+
+    max-width: 900px;
+
+    margin: 65px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 45px;
+}
+
+
+.then-now-card {
+
+    text-align: center;
+}
+
+
+.photo-frame {
+
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    padding: 10px;
+
+    background: #111;
+
+    border: 1px solid #555;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.6);
+
+    transition:
+        transform .6s ease,
+        border-color .6s ease,
+        box-shadow .6s ease;
+}
+
+
+.photo-frame:hover {
+
+    transform:
+        translateY(-10px);
+
+    border-color: #aaa;
+
+    box-shadow:
+        0 35px 80px rgba(255,255,255,.08);
+}
+
+
+.photo-frame img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    filter: grayscale(100%);
+
+    transition:
+        filter .6s ease,
+        transform .6s ease;
+}
+
+
+.photo-frame:hover img {
+
+    filter: grayscale(0%);
+
+    transform: scale(1.02);
+}
+
+
+.photo-label {
+
+    margin-top: 22px;
+
+    font-size: 8px;
+
+    letter-spacing: 5px;
+
+    color: #666;
+
+    text-transform: uppercase;
+}
+
+
+.photo-title {
+
+    margin-top: 8px;
+
+    font-family: var(--serif);
+
+    font-size: 38px;
+
+    font-style: italic;
+
+    font-weight: 300;
+}
+
+
+.then-now-line {
+
+    width: 1px;
+
+    height: 180px;
+
+    background:
+        linear-gradient(
+            transparent,
+            #666,
+            transparent
+        );
+
+    position: relative;
+}
+
+
+.then-now-line::after {
+
+    content: "♡";
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background: #050505;
+
+    padding: 12px;
+
+    color: #aaa;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   PHOTO BOOK
+===================================================== */
+
+.album-section {
+
+    background: #0d0d0d;
+
+    text-align: center;
+}
+
+
+.book-wrapper {
+
+    width: min(700px, 100%);
+
+    margin: 60px auto;
+}
+
+
+.book {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 500px;
+
+    overflow: hidden;
+
+    background: #151515;
+
+    border:
+        1px solid #3a3a3a;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.7);
+
+    touch-action: pan-y;
+}
+
+
+.book-page {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0;
+
+    transform:
+        translateX(100%);
+
+    transition:
+        .7s ease;
+}
+
+
+.book-page.active {
+
+    opacity: 1;
+
+    transform:
+        translateX(0);
+}
+
+
+.book-page img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    filter: grayscale(100%);
+}
+
+
+.book-page::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent 45%,
+            rgba(0,0,0,.8)
+        );
+}
+
+
+.page-caption {
+
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 20px;
+
+    z-index: 5;
+
+    text-align: left;
+}
+
+
+.page-caption strong {
+
+    display: block;
+
+    font-family: var(--serif);
+
+    font-size: 30px;
+
+    font-style: italic;
+
+    font-weight: 300;
+}
+
+
+.page-caption span {
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    color: #aaa;
+
+    text-transform: uppercase;
+}
+
+
+/* BOOK COVER */
+
+.book-cover {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 20;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #191919,
+            #050505
+        );
+
+    border:
+        1px solid #444;
+
+    transition:
+        transform 1s
+        cubic-bezier(.7,0,.2,1);
+
+    transform-origin:
+        left center;
+}
+
+
+.book.open .book-cover {
+
+    transform:
+        translateX(-105%);
+}
+
+
+.book-cover-small {
+
+    font-size: 8px;
+
+    letter-spacing: 5px;
+
+    color: #666;
+
+    text-transform: uppercase;
+}
+
+
+.book-cover h3 {
+
+    font-family: var(--serif);
+
+    font-size: 78px;
+
+    font-style: italic;
+
+    font-weight: 300;
+
+    margin: 20px 0;
+}
+
+
+.open-book {
+
+    padding:
+        12px 22px;
+
+    border:
+        1px solid #555;
+
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+.book-controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+
+.book-controls button {
+
+    padding:
+        12px 18px;
+
+    border:
+        1px solid #444;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+.book-controls button:hover {
+
+    background: white;
+
+    color: black;
+}
+
+
+.swipe-hint {
+
+    margin-top: 12px;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    color: #555;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   HEART GAME
+===================================================== */
+
+.game-section {
+
+    background:
+        radial-gradient(
+            circle,
+            #171717,
+            #050505 70%
+        );
+
+    text-align: center;
+}
+
+
+.game-area {
+
+    position: relative;
+
+    width: min(500px, 100%);
+
+    height: 500px;
+
+    margin:
+        50px auto 20px;
+
+    border:
+        1px solid #333;
+
+    overflow: hidden;
+
+    touch-action: manipulation;
+}
+
+
+.score {
+
+    position: absolute;
+
+    top: 15px;
+
+    left: 15px;
+
+    z-index: 10;
+
+    padding:
+        9px 13px;
+
+    border:
+        1px solid #444;
+
+    background:
+        rgba(0,0,0,.8);
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+.start-game {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    z-index: 10;
+
+    padding:
+        9px 13px;
+
+    background: white;
+
+    color: black;
+
+    border: none;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+.game-heart {
+
+    position: absolute;
+
+    font-size: 30px;
+
+    color: white;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    animation:
+        heartFloat 1s infinite;
+}
+
+
+@keyframes heartFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px)
+            scale(1.08);
+    }
+}
+
+
+.game-message {
+
+    min-height: 25px;
+
+    font-family: var(--serif);
+
+    font-size: 24px;
+
+    font-style: italic;
+
+    color: #ddd;
+}
+
+
+/* =====================================================
+   GIFTS
+===================================================== */
+
+.gift-section {
+
+    background: #0d0d0d;
+
+    text-align: center;
+}
+
+
+.gifts {
+
+    max-width: 950px;
+
+    margin:
+        60px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 18px;
+}
+
+
+.gift {
+
+    height: 280px;
+
+    perspective: 1000px;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+}
+
+
+.gift-inner {
+
+    width: 100%;
+
+    height: 100%;
+
+    position: relative;
+
+    transition:
+        transform .8s;
+
+    transform-style:
+        preserve-3d;
+}
+
+
+.gift.open .gift-inner {
+
+    transform:
+        rotateY(180deg);
+}
+
+
+.gift-front,
+.gift-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px;
+
+    backface-visibility:
+        hidden;
+
+    border:
+        1px solid #444;
+}
+
+
+.gift-front {
+
+    background: #161616;
+}
+
+
+.gift-back {
+
+    background: var(--white);
+
+    color: #000;
+
+    transform:
+        rotateY(180deg);
+}
+
+
+.gift-icon {
+
+    font-size: 34px;
+
+    margin-bottom: 18px;
+}
+
+
+.gift-front h3 {
+
+    font-family: var(--serif);
+
+    font-size: 32px;
+
+    font-style: italic;
+
+    font-weight: 300;
+}
+
+
+.gift-back h3 {
+
+    font-family: var(--serif);
+
+    font-size: 35px;
+
+    font-weight: 300;
+}
+
+
+.gift-back p {
+
+    margin-top: 10px;
+
+    color: #444;
+
+    font-size: 10px;
+
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   FINAL MESSAGE
+===================================================== */
+
+.final-section {
+
+    min-height: 100svh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle,
+            #181818,
+            #000 70%
+        );
+}
+
+
+.final-label {
+
+    font-size: 8px;
+
+    letter-spacing: 6px;
+
+    color: #666;
+
+    text-transform: uppercase;
+}
+
+
+.final-section h2 {
+
+    font-family: var(--serif);
+
+    font-size:
+        clamp(75px, 20vw, 150px);
+
+    line-height: .8;
+
+    font-style: italic;
+
+    font-weight: 300;
+
+    margin: 25px 0;
+}
+
+
+.final-section p {
+
+    max-width: 500px;
+
+    margin: auto;
+
+    font-size: 11px;
+
+    line-height: 2;
+
+    color: var(--gray);
+}
+
+
+.final-heart {
+
+    font-size: 42px;
+
+    margin-top: 30px;
+
+    animation:
+        heartbeat 1.4s infinite;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    padding: 35px 20px;
+
+    background: #000;
+
+    text-align: center;
+
+    color: #555;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   HEARTBEAT
+===================================================== */
+
+@keyframes heartbeat {
+
+    0%,100% {
+
+        transform:
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            scale(1.18);
+    }
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+@keyframes confettiFall {
+
+    to {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px) {
+
+    .nav-links {
+
+        display: none;
+    }
+
+
+    .hero h1 {
+
+        font-size: 88px;
+    }
+
+
+    .section {
+
+        padding:
+            90px 20px;
+    }
+
+
+    .age-number {
+
+        font-size: 230px;
+    }
+
+
+    /* THEN & NOW */
+
+    .then-now {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 45px;
+    }
+
+
+    .then-now-line {
+
+        width: 180px;
+
+        height: 1px;
+
+        margin: 0 auto;
+    }
+
+
+    .then-now-line::after {
+
+        top: 50%;
+
+        left: 50%;
+    }
+
+
+    /* PHOTO BOOK */
+
+    .book {
+
+        height: 470px;
+    }
+
+
+    .game-area {
+
+        height: 460px;
+    }
+
+
+    /* GIFTS */
+
+    .gifts {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .gift {
+
+        height: 220px;
+    }
+
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media(min-width:701px) {
+
+    .hero-ring {
+
+        width: 550px;
+
+        height: 550px;
+    }
+
+
+    .hero-ring.two {
+
+        width: 400px;
+
+        height: 400px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOADER
+===================================================== -->
+
+<div id="loader">
+
+    <div class="loader-content">
+
+        <div class="loader-heart">
+            ♡
+        </div>
+
+        <div class="loader-text">
+            A little something for you
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     PASSWORD SCREEN
+===================================================== -->
+
+<div id="passwordScreen">
+
+    <div class="password-card">
+
+        <div class="password-symbol">
+            ♡
+        </div>
+
+        <div class="password-small">
+            This little world is only for
+        </div>
+
+        <h1>
+            ANCIA
+        </h1>
+
+        <p>
+            Some memories, some surprises,
+            and a little piece of my heart.
+        </p>
+
+        <input
+            id="passwordInput"
+            class="password-input"
+            type="password"
+            placeholder="ENTER PASSWORD"
+        >
+
+        <button
+            class="enter-button"
+            onclick="enterWebsite()">
+
+            Enter
+
+        </button>
+
+        <div
+            id="passwordError"
+            class="password-error">
+
+            That's not it... try again ♡
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MUSIC
+
+     PUT YOUR SONG IN THE SAME FOLDER
+     AND NAME IT song.mp3
+===================================================== -->
+
+<audio
+    id="backgroundMusic"
+    loop
+    preload="auto">
+
+    <source
+        src="C:\Users\dszas\Downloads\Lady Gaga, Bruno Mars - Die With A Smile (Official Music Video).mp3"
+        type="audio/mpeg">
+
+</audio>
+
+
+
+<!-- =====================================================
+     PARTICLES
+===================================================== -->
+
+<div id="particles"></div>
+
+<div
+    id="touchGlow"
+    class="touch-glow">
+</div>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        A.
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#home">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="#letter">
+                Letter
+            </a>
+        </li>
+
+        <li>
+            <a href="#thenNow">
+                Then & Now
+            </a>
+        </li>
+
+        <li>
+            <a href="#memories">
+                Memories
+            </a>
+        </li>
+
+        <li>
+            <a href="#game">
+                Game
+            </a>
+        </li>
+
+        <li>
+            <a href="#gifts">
+                Gifts
+            </a>
+        </li>
+
+    </ul>
+
+    <button
+        class="music-button"
+        id="musicButton"
+        onclick="toggleMusic()">
+
+        ♪
+
+    </button>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+    id="home"
+    class="hero">
+
+    <div class="hero-ring"></div>
+
+    <div class="hero-ring two"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-small">
+            A little world made for you
+        </div>
+
+        <h1>
+            AN<span>C</span>IA
+        </h1>
+
+        <div class="hero-subtitle">
+            turns nineteen.
+        </div>
+
+        <p class="hero-description">
+
+            One more year of you.
+            One more year of beautiful memories.
+            And one more reason to celebrate
+            the person who means so much to me.
+
+        </p>
+
+        <a
+            href="#letter"
+            class="hero-button">
+
+            Begin the story
+
+        </a>
+
+    </div>
+
+    <div class="scroll-text">
+        scroll slowly ↓
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     19TH BIRTHDAY
+===================================================== -->
+
+<section class="age-section">
+
+    <div>
+
+        <div class="age-small">
+            Chapter nineteen
+        </div>
+
+        <div class="age-number">
+            19
+        </div>
+
+        <div class="age-title">
+            beautiful looks good on you.
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LOVE LETTER
+===================================================== -->
+
+<section
+    id="letter"
+    class="section letter-section">
+
+    <div class="container">
+
+        <div class="section-label">
+            01 — A letter
+        </div>
+
+        <div class="section-title">
+            For <em>you.</em>
+        </div>
+
+        <div class="letter-box">
+
+            <p>
+                Happy 19th birthday, Ancia. ♡
+            </p>
+
+            <p>
+                I don't think I can put everything
+                I feel for you into a few words,
+                but I still want to try.
+            </p>
+
+            <p>
+                Thank you for being there for me,
+                for caring about me, for making me
+                laugh, and for making ordinary days
+                feel a little more special.
+            </p>
+
+            <p>
+                I hope this new chapter of your life
+                brings you happiness, beautiful
+                memories, peaceful days and everything
+                you've been wishing for.
+            </p>
+
+            <p>
+                And I hope I get to be there beside you
+                for many more birthdays, adventures,
+                random conversations, laughs and
+                unforgettable moments.
+            </p>
+
+            <p>
+                You deserve the very best.
+            </p>
+
+            <div class="signature">
+                Always yours.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     THEN & NOW
+===================================================== -->
+
+<section
+    id="thenNow"
+    class="then-now-section">
+
+    <div class="container">
+
+        <div class="section-label">
+            02 — A little before & after
+        </div>
+
+        <div class="section-title">
+            Then <em>&</em> Now.
+        </div>
+
+        <p class="then-now-subtitle">
+
+            From the little girl she once was
+            to the beautiful person she has become.
+
+        </p>
+
+
+        <div class="then-now">
+
+
+            <!-- CHILDHOOD PHOTO -->
+
+            <div class="then-now-card">
+
+                <div class="photo-frame">
+
+                    <!-- CHANGE childhood.jpg TO YOUR PHOTO -->
+
+                    <img
+                        src="C:\Users\dszas\Downloads\baby.jpg"
+                        alt="Little Love">
+
+                </div>
+
+                <div class="photo-label">
+                    Chapter One
+                </div>
+
+                <div class="photo-title">
+                    Then.
+                </div>
+
+            </div>
+
+
+            <!-- CENTER LINE -->
+
+            <div class="then-now-line"></div>
+
+
+            <!-- CURRENT PHOTO -->
+
+            <div class="then-now-card">
+
+                <div class="photo-frame">
+
+                    <!-- CHANGE current.jpg TO YOUR PHOTO -->
+
+                    <img
+                        src="C:\Users\dszas\Downloads\big.jpg"
+                        alt="My Love">
+
+                </div>
+
+                <div class="photo-label">
+                    Chapter Nineteen
+                </div>
+
+                <div class="photo-title">
+                    Now.
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PHOTO BOOK
+===================================================== -->
+
+<section
+    id="memories"
+    class="section album-section">
+
+    <div class="container">
+
+        <div class="section-label">
+            03 — Our memories
+        </div>
+
+        <div class="section-title">
+            A little <em>album.</em>
+        </div>
+
+        <p class="section-text">
+
+            Open the book and swipe through
+            some of your favourite memories.
+
+        </p>
+
+
+        <div class="book-wrapper">
+
+            <div
+                class="book"
+                id="photoBook">
+
+
+                <!-- BOOK COVER -->
+
+                <div class="book-cover">
+
+                    <div class="book-cover-small">
+                        our little memories
+                    </div>
+
+                    <h3>
+                        Ancia
+                    </h3>
+
+                    <button
+                        class="open-book"
+                        onclick="openBook()">
+
+                        Open the book
+
+                    </button>
+
+                </div>
+
+
+                <!-- PHOTO 1 -->
+
+                <div class="book-page active">
+
+                    <img
+                        src="C:\Users\dszas\Downloads\image1.png"
+                        alt="Memory 1">
+
+                    <div class="page-caption">
+
+                        <strong>
+                            The beginning
+                        </strong>
+
+                        <span>
+                            chapter one
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PHOTO 2 -->
+
+                <div class="book-page">
+
+                    <img
+                        src="C:\Users\dszas\Downloads\image2.jpg"
+                        alt="Memory 2">
+
+                    <div class="page-caption">
+
+                        <strong>
+                            That smile
+                        </strong>
+
+                        <span>
+                            one of my favourites
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PHOTO 3 -->
+
+                <div class="book-page">
+
+                    <img
+                        src="C:\Users\dszas\Downloads\image3.jpg"
+                        alt="Memory 3">
+
+                    <div class="page-caption">
+
+                        <strong>
+                            Us
+                        </strong>
+
+                        <span>
+                            my favourite place
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PHOTO 4 -->
+
+                <div class="book-page">
+
+                    <img
+                        src="C:\Users\dszas\Downloads\image4.jpg"
+                        alt="Memory 4">
+
+                    <div class="page-caption">
+
+                        <strong>
+                            Little moments
+                        </strong>
+
+                        <span>
+                            big memories
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PHOTO 5 -->
+
+                <div class="book-page">
+
+                    <img
+                        src="C:\Users\dszas\Downloads\img6.jpg"
+                        alt="Memory 5">
+
+                    <div class="page-caption">
+
+                        <strong>
+                            Always
+                        </strong>
+
+                        <span>
+                            and forever
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PHOTO 6 -->
+
+                <div class="book-page">
+
+                    <img
+                        src="C:\Users\dszas\Downloads\IMG_8053.jpg"
+                        alt="Memory 6">
+
+                    <div class="page-caption">
+
+                        <strong>
+                            More to come
+                        </strong>
+
+                        <span>
+                            chapter continues
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="book-controls">
+
+                <button onclick="previousPage()">
+                    ← Previous
+                </button>
+
+                <button onclick="nextPage()">
+                    Next →
+                </button>
+
+            </div>
+
+
+            <div class="swipe-hint">
+                swipe left / right on iPhone
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     HEART GAME
+===================================================== -->
+
+<section
+    id="game"
+    class="section game-section">
+
+    <div class="container">
+
+        <div class="section-label">
+            04 — A tiny game
+        </div>
+
+        <div class="section-title">
+            Catch the <em>hearts.</em>
+        </div>
+
+        <p class="section-text">
+
+            Tap the hearts before they disappear.
+            Let's see how many love points you can collect.
+
+        </p>
+
+
+        <div
+            id="gameArea"
+            class="game-area">
+
+            <div
+                id="score"
+                class="score">
+
+                Hearts: 0
+
+            </div>
+
+            <button
+                class="start-game"
+                onclick="startGame()">
+
+                Start
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="gameMessage"
+            class="game-message">
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MYSTERY GIFTS
+===================================================== -->
+
+<section
+    id="gifts"
+    class="section gift-section">
+
+    <div class="container">
+
+        <div class="section-label">
+            05 — Three little surprises
+        </div>
+
+        <div class="section-title">
+            Choose a <em>gift.</em>
+        </div>
+
+        <p class="section-text">
+
+            Tap any box.
+            You never know what is waiting inside.
+
+        </p>
+
+
+        <div class="gifts">
+
+
+            <!-- GIFT 1 -->
+
+            <div
+                class="gift"
+                onclick="openGift(this)">
+
+                <div class="gift-inner">
+
+                    <div class="gift-front">
+
+                        <div class="gift-icon">
+                            ♡
+                        </div>
+
+                        <h3>
+                            Gift One
+                        </h3>
+
+                    </div>
+
+                    <div class="gift-back">
+
+                        <h3>
+                            My favourite person
+                        </h3>
+
+                        <p>
+                            You are one of the
+                            best things that ever
+                            happened to me.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- GIFT 2 -->
+
+            <div
+                class="gift"
+                onclick="openGift(this)">
+
+                <div class="gift-inner">
+
+                    <div class="gift-front">
+
+                        <div class="gift-icon">
+                            ✦
+                        </div>
+
+                        <h3>
+                            Gift Two
+                        </h3>
+
+                    </div>
+
+                    <div class="gift-back">
+
+                        <h3>
+                            A promise
+                        </h3>
+
+                        <p>
+                            More laughs.
+                            More memories.
+                            More adventures.
+                            More us.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- GIFT 3 -->
+
+            <div
+                class="gift"
+                onclick="openGift(this)">
+
+                <div class="gift-inner">
+
+                    <div class="gift-front">
+
+                        <div class="gift-icon">
+                            ∞
+                        </div>
+
+                        <h3>
+                            Gift Three
+                        </h3>
+
+                    </div>
+
+                    <div class="gift-back">
+
+                        <h3>
+                            One more thing
+                        </h3>
+
+                        <p>
+                            No matter how many
+                            birthdays pass,
+                            you'll always be special
+                            to me.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FINAL MESSAGE
+===================================================== -->
+
+<section class="final-section">
+
+    <div>
+
+        <div class="final-label">
+            And finally...
+        </div>
+
+        <h2>
+            Happy<br>
+            Birthday.
+        </h2>
+
+        <p>
+
+            Happy 19th birthday to the girl
+            who makes my world a little brighter.
+
+            I hope this year gives you countless
+            reasons to smile.
+
+            Keep being exactly who you are.
+
+            You are beautiful, you are loved,
+            and you are incredibly special to me.
+
+        </p>
+
+        <div class="final-heart">
+            ♡
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    Made with love for Ancia .          BY SHAWN
+
+</footer>
+
+
+
+<script>
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+/*
+   CHANGE YOUR PASSWORD HERE
+*/
+
+const correctPassword = "1722";
+
+
+function enterWebsite() {
+
+    const input =
+        document.getElementById(
+            "passwordInput"
+        );
+
+    const error =
+        document.getElementById(
+            "passwordError"
+        );
+
+    const screen =
+        document.getElementById(
+            "passwordScreen"
+        );
+
+    const music =
+        document.getElementById(
+            "backgroundMusic"
+        );
+
+
+    if (
+        input.value.trim().toLowerCase()
+        === correctPassword.toLowerCase()
+    ) {
+
+        screen.classList.add("hide");
+
+
+        /*
+           Music starts after
+           the user taps Enter.
+        */
+
+        music.volume = 0.35;
+
+        music.play()
+            .then(() => {
+
+                musicPlaying = true;
+
+                document.getElementById(
+                    "musicButton"
+                ).textContent = "Ⅱ";
+
+            })
+            .catch(() => {
+
+                console.log(
+                    "Music could not autoplay."
+                );
+
+            });
+
+    }
+
+    else {
+
+        error.classList.add("show");
+
+        input.value = "";
+
+        setTimeout(() => {
+
+            error.classList.remove("show");
+
+        }, 2000);
+
+    }
+
+}
+
+
+/* Press Enter */
+
+document
+    .getElementById("passwordInput")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                enterWebsite();
+
+            }
+
+        }
+    );
+
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+const music =
+    document.getElementById(
+        "backgroundMusic"
+    );
+
+let musicPlaying = false;
+
+
+function toggleMusic() {
+
+    if (musicPlaying) {
+
+        music.pause();
+
+        musicPlaying = false;
+
+        document.getElementById(
+            "musicButton"
+        ).textContent = "♪";
+
+    }
+
+    else {
+
+        music.play()
+            .then(() => {
+
+                musicPlaying = true;
+
+                document.getElementById(
+                    "musicButton"
+                ).textContent = "Ⅱ";
+
+            });
+
+    }
+
+}
+
+
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function() {
+
+        setTimeout(() => {
+
+            document
+                .getElementById("loader")
+                .classList.add("hide");
+
+        }, 1000);
+
+    }
+);
+
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+const particleContainer =
+    document.getElementById(
+        "particles"
+    );
+
+
+for (
+    let i = 0;
+    i < 45;
+    i++
+) {
+
+    const particle =
+        document.createElement("div");
+
+    particle.className =
+        "particle";
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.animationDuration =
+        (8 + Math.random() * 15) + "s";
+
+    particle.style.animationDelay =
+        Math.random() * 10 + "s";
+
+    particleContainer.appendChild(
+        particle
+    );
+
+}
+
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+window.addEventListener(
+    "scroll",
+    function() {
+
+        const navbar =
+            document.querySelector(
+                ".navbar"
+            );
+
+        if (window.scrollY > 50) {
+
+            navbar.classList.add(
+                "scrolled"
+            );
+
+        }
+
+        else {
+
+            navbar.classList.remove(
+                "scrolled"
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   MOUSE / TOUCH GLOW
+===================================================== */
+
+const glow =
+    document.getElementById(
+        "touchGlow"
+    );
+
+
+document.addEventListener(
+    "mousemove",
+    function(e) {
+
+        glow.style.left =
+            e.clientX + "px";
+
+        glow.style.top =
+            e.clientY + "px";
+
+    }
+);
+
+
+document.addEventListener(
+    "touchmove",
+    function(e) {
+
+        if (
+            e.touches &&
+            e.touches.length
+        ) {
+
+            glow.style.left =
+                e.touches[0].clientX + "px";
+
+            glow.style.top =
+                e.touches[0].clientY + "px";
+
+        }
+
+    },
+    { passive: true }
+);
+
+
+
+/* =====================================================
+   PHOTO BOOK
+===================================================== */
+
+const pages =
+    document.querySelectorAll(
+        ".book-page"
+    );
+
+let currentPage = 0;
+
+let bookOpened = false;
+
+
+function openBook() {
+
+    document
+        .getElementById("photoBook")
+        .classList.add("open");
+
+    bookOpened = true;
+
+}
+
+
+function showPage(index) {
+
+    if (!bookOpened) return;
+
+
+    if (index < 0) {
+
+        index =
+            pages.length - 1;
+
+    }
+
+
+    if (
+        index >= pages.length
+    ) {
+
+        index = 0;
+
+    }
+
+
+    pages.forEach(
+        page => {
+
+            page.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    pages[index]
+        .classList.add("active");
+
+
+    currentPage = index;
+
+}
+
+
+function nextPage() {
+
+    showPage(
+        currentPage + 1
+    );
+
+}
+
+
+function previousPage() {
+
+    showPage(
+        currentPage - 1
+    );
+
+}
+
+
+
+/* =====================================================
+   SWIPE PHOTO BOOK
+===================================================== */
+
+let touchStartX = 0;
+
+let touchEndX = 0;
+
+
+const book =
+    document.getElementById(
+        "photoBook"
+    );
+
+
+book.addEventListener(
+    "touchstart",
+    function(e) {
+
+        touchStartX =
+            e.changedTouches[0].screenX;
+
+    },
+    { passive: true }
+);
+
+
+book.addEventListener(
+    "touchend",
+    function(e) {
+
+        touchEndX =
+            e.changedTouches[0].screenX;
+
+        handleSwipe();
+
+    },
+    { passive: true }
+);
+
+
+function handleSwipe() {
+
+    const distance =
+        touchEndX - touchStartX;
+
+
+    if (
+        Math.abs(distance) < 50
+    ) return;
+
+
+    if (distance < 0) {
+
+        nextPage();
+
+    }
+
+    else {
+
+        previousPage();
+
+    }
+
+}
+
+
+
+/* =====================================================
+   GIFTS
+===================================================== */
+
+function openGift(gift) {
+
+    gift.classList.toggle(
+        "open"
+    );
+
+}
+
+
+
+/* =====================================================
+   HEART GAME
+===================================================== */
+
+let score = 0;
+
+let gameRunning = false;
+
+let gameTimer;
+
+
+function startGame() {
+
+    score = 0;
+
+    gameRunning = true;
+
+
+    document.getElementById(
+        "score"
+    ).textContent =
+        "Hearts: 0";
+
+
+    document.getElementById(
+        "gameMessage"
+    ).textContent =
+        "";
+
+
+    clearInterval(
+        gameTimer
+    );
+
+
+    gameTimer =
+        setInterval(
+            createHeart,
+            850
+        );
+
+
+    setTimeout(
+        endGame,
+        15000
+    );
+
+}
+
+
+function createHeart() {
+
+    if (!gameRunning) return;
+
+
+    const area =
+        document.getElementById(
+            "gameArea"
+        );
+
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+
+    heart.className =
+        "game-heart";
+
+
+    heart.textContent =
+        Math.random() > .5
+        ? "♡"
+        : "♥";
+
+
+    const maxX =
+        area.clientWidth - 55;
+
+    const maxY =
+        area.clientHeight - 55;
+
+
+    heart.style.left =
+        Math.random() *
+        Math.max(maxX, 20) +
+        "px";
+
+
+    heart.style.top =
+        Math.random() *
+        Math.max(maxY, 20) +
+        "px";
+
+
+    heart.addEventListener(
+        "click",
+        collectHeart
+    );
+
+
+    heart.addEventListener(
+        "touchstart",
+        collectHeart,
+        { passive: false }
+    );
+
+
+    area.appendChild(
+        heart
+    );
+
+
+    setTimeout(
+        () => {
+
+            if (
+                heart.parentNode
+            ) {
+
+                heart.remove();
+
+            }
+
+        },
+        1800
+    );
+
+}
+
+
+function collectHeart(e) {
+
+    e.preventDefault();
+
+    score++;
+
+
+    document.getElementById(
+        "score"
+    ).textContent =
+        "Hearts: " + score;
+
+
+    if (
+        e.currentTarget
+    ) {
+
+        e.currentTarget.remove();
+
+    }
+
+}
+
+
+function endGame() {
+
+    gameRunning = false;
+
+    clearInterval(
+        gameTimer
+    );
+
+
+    document
+        .querySelectorAll(
+            ".game-heart"
+        )
+        .forEach(
+            heart =>
+                heart.remove()
+        );
+
+
+    let message;
+
+
+    if (score >= 15) {
+
+        message =
+            "Okay... that's a lot of love ♡";
+
+    }
+
+    else if (score >= 8) {
+
+        message =
+            "You caught quite a lot of love ♡";
+
+    }
+
+    else {
+
+        message =
+            "There is always more love to catch ♡";
+
+    }
+
+
+    document.getElementById(
+        "gameMessage"
+    ).textContent =
+        message;
+
+}
+
+
+
+/* =====================================================
+   FINAL CONFETTI
+===================================================== */
+
+function createConfetti() {
+
+    for (
+        let i = 0;
+        i < 45;
+        i++
+    ) {
+
+        const piece =
+            document.createElement(
+                "div"
+            );
+
+
+        piece.style.position =
+            "fixed";
+
+
+        piece.style.top =
+            "-10px";
+
+
+        piece.style.left =
+            Math.random() * 100 +
+            "%";
+
+
+        piece.style.width =
+            "5px";
+
+
+        piece.style.height =
+            "10px";
+
+
+        piece.style.background =
+            i % 2 === 0
+            ? "#fff"
+            : "#777";
+
+
+        piece.style.zIndex =
+            "10000";
+
+
+        piece.style.pointerEvents =
+            "none";
+
+
+        piece.style.animation =
+            "confettiFall 4s linear forwards";
+
+
+        document.body.appendChild(
+            piece
+        );
+
+
+        setTimeout(
+            () => {
+
+                piece.remove();
+
+            },
+            4000
+        );
+
+    }
+
+}
+
+
+const finalSection =
+    document.querySelector(
+        ".final-section"
+    );
+
+
+let finalTriggered = false;
+
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting &&
+                        !finalTriggered
+                    ) {
+
+                        finalTriggered = true;
+
+                        createConfetti();
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: .5
+        }
+    );
+
+
+observer.observe(
+    finalSection
+);
+
+
+
+/* =====================================================
+   KEYBOARD PHOTO CONTROLS
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(e) {
+
+        if (
+            e.key === "ArrowRight"
+        ) {
+
+            nextPage();
+
+        }
+
+
+        if (
+            e.key === "ArrowLeft"
+        ) {
+
+            previousPage();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
